@@ -1,10 +1,13 @@
 #include "relais.h"
 
 #define BAUDRATE B2400
+#ifndef K8056_DEVICE
+#define K8056_DEVICE "/dev/ttyS0"
+#endif
 
 struct 	termios oldtio, newtio ;
 int     	k8056_port ;
-char		k8056_device[16] = "/dev/ttyS0" ;	/*  This is the default device, can be reset on command line. */
+char		k8056_device[] = K8056_DEVICE;	/*  This is the default device, can be reset on command line. */
 unsigned char 	k8056_instruction = 'E';
 unsigned char 	k8056_addr = 1 ;
 unsigned char	k8056_relay_address = '0'  ;
